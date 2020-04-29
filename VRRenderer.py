@@ -27,7 +27,7 @@ frag_shaders = {
 
     out vec4 fragColor;
 
-    void main() {
+    void main() {{
     
         // Calculate the pointing angle
         float azimuth = vTexCoord.x * PI;
@@ -40,26 +40,26 @@ frag_shaders = {
         pt.z = cos(elevation) * cos(azimuth);
         
         // Select the correct pixel
-        if ((abs(pt.x) >= abs(pt.y)) && (abs(pt.x) >= abs(pt.z))) {
-            if (pt.x <= 0.0) {
+        if ((abs(pt.x) >= abs(pt.y)) && (abs(pt.x) >= abs(pt.z))) {{
+            if (pt.x <= 0.0) {{
                 fragColor = texture(cubeLeftImage, vec2(((-pt.z/pt.x)+1.0)/2.0,((-pt.y/pt.x)+1.0)/2.0));
-            } else {
+            }} else {{
                 fragColor = texture(cubeRightImage, vec2(((-pt.z/pt.x)+1.0)/2.0,((pt.y/pt.x)+1.0)/2.0));
-            }
-        } else if (abs(pt.y) >= abs(pt.z)) {
-            if (pt.y <= 0.0) {
+            }}
+        }} else if (abs(pt.y) >= abs(pt.z)) {{
+            if (pt.y <= 0.0) {{
                 fragColor = texture(cubeBottomImage, vec2(((-pt.x/pt.y)+1.0)/2.0,((-pt.z/pt.y)+1.0)/2.0));
-            } else {
+            }} else {{
                 fragColor = texture(cubeTopImage, vec2(((pt.x/pt.y)+1.0)/2.0,((-pt.z/pt.y)+1.0)/2.0));
-            }
-        } else {
-            if (pt.z <= 0.0) {
+            }}
+        }} else {{
+            if (pt.z <= 0.0) {{
                 fragColor = texture(cubeBackImage, vec2(((pt.x/pt.z)+1.0)/2.0,((-pt.y/pt.z)+1.0)/2.0));
-            } else {
+            }} else {{
                 fragColor = texture(cubeFrontImage, vec2(((pt.x/pt.z)+1.0)/2.0,((pt.y/pt.z)+1.0)/2.0));
-            }
-        }
-    }
+            }}
+        }}
+    }}
 ''',
 # Define the fragment shader for the 180 degree conversion
 "EQUI180": '''
